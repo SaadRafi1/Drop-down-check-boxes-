@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <select id="country" onchange="populateStates()">
+        <option value="">Select Country</option>
+        <option value="USA">USA</option>
+        <option value="Canada">Canada</option>
+        <option value="Pakistan">Pakistan</option>
+      </select>
+      <select id="state" onchange="populateCities()">
+        <option value="">Select State</option>
+      </select>
+      <select id="city">
+        <option value="">Select City</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      function populateStates() {
+        var countrySelect = document.getElementById("country");
+        var stateSelect = document.getElementById("state");
+        var country = countrySelect.value;
+
+        stateSelect.innerHTML = "<option value=''>Select State</option>";
+
+        if (country === "USA") {
+          var states = ["New York", "California", "Texas"];
+        } else if (country === "Canada") {
+          var states = ["Ontario", "Quebec", "British Columbia"];
+        } else if (country === "Pakistan") {
+          var states = ["Punjab", "Sindh", "Khyber Pakhtunkhwa", "Balochistan"];
+        }
+
+        states.forEach(function (state) {
+          var option = document.createElement("option");
+          option.text = state;
+          option.value = state;
+          stateSelect.appendChild(option);
+        });
+      }
+
+      function populateCities() {
+        var stateSelect = document.getElementById("state");
+        var citySelect = document.getElementById("city");
+        var state = stateSelect.value;
+
+        citySelect.innerHTML = "<option value=''>Select City</option>";
+
+        if (state === "New York") {
+          var cities = ["New York City", "Albany", "Buffalo"];
+        } else if (state === "California") {
+          var cities = ["Los Angeles", "San Francisco", "San Diego"];
+        } else if (state === "Texas") {
+          var cities = ["Houston", "Dallas", "Austin"];
+        } else if (state === "Ontario") {
+          var cities = ["Toronto", "Ottawa", "Hamilton"];
+        } else if (state === "Quebec") {
+          var cities = ["Montreal", "Quebec City", "Gatineau"];
+        } else if (state === "British Columbia") {
+          var cities = ["Vancouver", "Victoria", "Burnaby"];
+        } else if (state === "Punjab") {
+          var cities = ["Lahore", "Faisalabad", "Rawalpindi"];
+        } else if (state === "Sindh") {
+          var cities = ["Karachi", "Hyderabad", "Sukkur"];
+        } else if (state === "Khyber Pakhtunkhwa") {
+          var cities = ["Peshawar", "Abbottabad", "Swat"];
+        } else if (state === "Balochistan") {
+          var cities = ["Quetta", "Gwadar", "Khuzdar"];
+        }
+
+        cities.forEach(function (city) {
+          var option = document.createElement("option");
+          option.text = city;
+          option.value = city;
+          citySelect.appendChild(option);
+        });
+      }
+    </script>
+  </body>
+</html>
